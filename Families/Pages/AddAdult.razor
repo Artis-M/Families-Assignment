@@ -1,0 +1,91 @@
+﻿@page "/AddAdult"
+@using Models
+@using Families.Data
+@inject IFamilyService FamilyService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+<div class="row input-row">
+    <h3> Add New Adult</h3>
+    <EditForm class="col s12" Model="@NewAdult" OnValidSubmit="@AddNewAdult">
+        <DataAnnotationsValidator/>
+
+        <InputText placeholder="First Name" @bind-Value="@NewAdult.FirstName"/>
+        <InputText placeholder="Last Name" @bind-Value="@NewAdult.LastName"/>
+                <label>Age: </label>
+        <InputNumber placeholder="Age" @bind-Value="@NewAdult.Age"/>
+        <label for="gender">Gender</label>
+        <InputSelect class="browser-default" id="gender" @bind-Value="@NewAdult.Sex">
+            <option selected>Male</option>
+            <option>Female</option>
+        </InputSelect>
+        <label for="hairSel">Select Hair Colour</label>
+        <InputSelect class="browser-default" id="hairSel" @bind-Value="@NewAdult.HairColor">
+            <option selected>Blond</option>
+            <option>Red</option>
+            <option>Brown</option>
+            <option>Black</option>
+            <option>White</option>
+            <option>Grey</option>
+            <option>Blue</option>
+            <option>Green</option>
+            <option>Leverpostej</option>
+        </InputSelect>
+               <label for="eyeSel">Select Eye Colour</label>
+        <InputSelect class="browser-default" id="eyeSel" @bind-Value="@NewAdult.EyeColor">
+            <option selected>Black</option>
+            <option>Brown</option>
+            <option>Grey</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Amber</option>
+            <option>Hazel</option>
+        </InputSelect>
+        <label>Height(cm): </label>
+            <InputNumber @bind-Value="@NewAdult.Height"/>
+            <label>Weight(kg): </label>
+            <InputNumber @bind-Value="@NewAdult.Weight"/>
+        <InputText @bind-Value="@NewAdult.JobTitle" placeholder="Job Title"></InputText>
+        <label>Profile Image Link (prefferable a square image): </label>
+        <div class="row">
+            <div class="col s6">
+                 <InputText placeholder="" @bind-Value="@NewAdult.PhotoLink"/>
+            </div>
+            <div class="col s6">
+                <figure>
+                    <img style="height: 250px;" class="circle responsive- right" src="@NewAdult.PhotoLink"/>
+                    <figcaption><label style="font-size: 15pt;">Image Preview:</label></figcaption>
+                </figure>
+            </div>
+           
+        </div>
+        <ValidationSummary/>
+        <button class="btn btn-outline-danger" type="submit">Create</button>
+        <label style="font-size: 20pt; color: #26a69a;">@response</label>
+    </EditForm>
+</div>
+@code {
+    Adult NewAdult = new Adult
+    {
+        HairColor = "Blond",
+        EyeColor = "Black",
+        Sex = "Male",
+        PhotoLink = ""
+    };
+    String response;
+    private void AddNewAdult()
+    {
+        if (NewAdult.PhotoLink.Equals(""))
+        {
+            NewAdult.PhotoLink = "/images/profile.svg";
+        }
+        FamilyService.addAdult(NewAdult);
+        response = "Adult added.";
+        NewAdult = new Adult
+        {
+            HairColor = "Blond",
+            EyeColor = "Black",
+            Sex = "Male",
+            PhotoLink = ""
+        };
+    }
+}

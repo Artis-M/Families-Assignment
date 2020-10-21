@@ -1,0 +1,41 @@
+[
+  {
+    "JobTitle": "Dunno",
+    "Id": 4,
+    "FirstName": "John",
+    "LastName": " Cena",
+    "HairColor": "Blond",
+    "EyeColor": "Green",
+    "Age": 35,
+    "Weight": 100,
+    "Height": 186,
+    "Sex": "Male",
+    "PhotoLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/John_Cena_July_2018.jpg/220px-John_Cena_July_2018.jpg"
+  },
+  {
+    "JobTitle": "Being Jeff",
+    "Id": 2,
+    "FirstName": "Jeff",
+    "LastName": "r\u0336e\u0337d\u0336a\u0338c\u0336t\u0336e\u0337d\u0338",
+    "HairColor": "Brown",
+    "EyeColor": "Black",
+    "Age": 35,
+    "Weight": 80,
+    "Height": 180,
+    "Sex": "Male",
+    "PhotoLink": "https://i1.sndcdn.com/artworks-000241396518-xcalrl-t500x500.jpg"
+  },
+  {
+    "JobTitle": "Bottom Gear Co-Host",
+    "Id": 3,
+    "FirstName": "Jermiah",
+    "LastName": "Cwarkson",
+    "HairColor": "Grey",
+    "EyeColor": "Amber",
+    "Age": 99,
+    "Weight": 90,
+    "Height": 190,
+    "Sex": "Male",
+    "PhotoLink": "https://pbs.twimg.com/media/EkmOBLNVkAEWfAE?format=jpg\u0026name=small"
+  }
+]

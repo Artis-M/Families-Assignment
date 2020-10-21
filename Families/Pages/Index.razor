@@ -1,0 +1,71 @@
+﻿@page "/"
+@using Models
+@using Families.Data
+@inject IFamilyService FamilyService
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="row">
+            <div class="col 5s">
+                <h2 class="teal-text lighten-1">Family Manager</h2>
+                <p>Here you can add and manage families, with each family memeber containing relevant information + a profile picture.</p>
+            </div>
+            <div class="col 5s">
+            </div>
+        </div>
+    </NotAuthorized>
+    <Authorized>
+        <div class="row">
+            <h4 class="teal-text lighten-1">Recently Added Adult</h4>
+                <div class="col s6">
+                    <div class="card teal lighten-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">
+                                <div class="row">
+                                    <div class="col s8">
+                                        <strong>@LastAdult.FirstName @LastAdult.LastName</strong>
+                                    </div>
+                                    <div class="col s4">
+                                        <img style="height: 100px;" class="circle responsive- right" src="@LastAdult.PhotoLink"/>
+                                    </div>
+                                </div>
+                                        
+                
+                            </span>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Job</th>
+                                    <th>Eye Colour</th>
+                                    <th>Hair Colour</th>
+                                    <th>Age</th>
+                                    <th>Weight (kg)</th>
+                                    <th>Height (cm)</th>
+                                    <th>Gender</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>@LastAdult.JobTitle</td>
+                                    <td>@LastAdult.EyeColor</td>
+                                    <td>@LastAdult.HairColor</td>
+                                    <td>@LastAdult.Age</td>
+                                    <td>@LastAdult.Weight</td>
+                                    <td>@LastAdult.Height</td>
+                                    <td>@LastAdult.Sex</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+    </Authorized>
+</AuthorizeView>
+@code{
+    
+    private Adult LastAdult;
+    protected override void OnInitialized()
+    {
+        LastAdult = FamilyService.getAdults().Last();
+    }
+}
